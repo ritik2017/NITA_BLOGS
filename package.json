@@ -1,0 +1,27 @@
+{
+  "name": "NITA_BLOGS",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ritik2017/NITA_BLOGS.git"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "path-to-regexp": "^6.1.0",
+    "ejs": "^3.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ritik2017/NITA_BLOGS/issues"
+  },
+  "homepage": "https://github.com/ritik2017/NITA_BLOGS#readme",
+  "devDependencies": {},
+  "description": ""
+}
