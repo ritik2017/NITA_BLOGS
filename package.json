@@ -1,11 +1,11 @@
 {
-  "name": "NITA_BLOGS",
+  "name": "nitablogs",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "watch": "nodemon server",
+    "watch": "nodemon db",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node db"
   },
   "repository": {
     "type": "git",
@@ -14,7 +14,11 @@
   "dependencies": {
     "express": "^4.17.1",
     "path-to-regexp": "^6.1.0",
-    "ejs": "^3.0.1"
+    "ejs": "^3.0.1",
+    "mongodb": "^3.5.2",
+    "validator": "^12.2.0",
+    "nodemon": "^2.0.2",
+    "dotenv": "^8.2.0"
   },
   "keywords": [],
   "author": "",
