@@ -59,14 +59,16 @@ User.prototype.register = function() {
 User.prototype.login = function(resolve,reject){
     return new Promise((resolve,reject) => {
         this.cleanUp()
-        userCollection.findOne({username: this.data.username}, (err, attemptedUser) => {
-        if(attemptedUser && attemptedUser.password == this.data.password){
-            resolve("congrats")
-        }
-        else {
-            reject("Invalid Username or Password")
-        }
-    })
+        userCollection.findOne({username: this.data.username}).then((attemptedUser) => {
+                if(attemptedUser && attemptedUser.password == this.data.password){
+                    resolve("congrats")
+                }
+                else {
+                    reject("Invalid Username or Password")
+                }
+        }).catch(() => {
+            reject("Please try after some time")
+        })
     })
 }
 
