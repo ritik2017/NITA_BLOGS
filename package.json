@@ -19,7 +19,8 @@
     "validator": "^12.2.0",
     "nodemon": "^2.0.2",
     "dotenv": "^8.2.0",
-    "bcrypt": "^3.0.8"
+    "bcrypt": "^3.0.8",
+    "express-session": "^1.17.0"
   },
   "keywords": [],
   "author": "",
