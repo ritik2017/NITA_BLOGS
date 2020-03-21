@@ -13,6 +13,10 @@ exports.create = function(req,res) {
     })  
 }
 
-exports.viewSingle = function(req,res){
-    res.render('../views/single-post-screen')
+exports.viewSingle = async function(req,res){
+    Post.findSingleById(req.params.id).then((post) => {
+        res.render('../views/single-post-screen', {post: post})
+    }).catch(() => {
+        res.render('404')
+    }) 
 }
