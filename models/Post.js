@@ -1,5 +1,6 @@
 const postCollection = require('../db').db().collection("posts")
 const ObjectID = require('mongodb').ObjectID
+const User = require('./User')
 
 let Post = function(data, userid) {
     this.data = data
@@ -11,7 +12,7 @@ Post.prototype.cleanUp = function() {
     if(typeof(this.data.title) != "string") {this.data.title = ""}
     if(typeof(this.data.body) != "string") {this.data.body = ""}
 
-    // Get Rid of any bogus properties
+    // Getting Rid of any bogus properties
     this.data = {
         title: this.data.title,
         body: this.data.body,
@@ -40,9 +41,34 @@ Post.prototype.create = function() {
             }).catch((error) => {
                 this.errors.push("Please try creating blog after some time")
             })
-        }else {
+        } else {
             reject(this.errors)
         }
+    })
+}
+
+Post.reusagePostQuery = function(uniqueOperations) {
+    return new Promise(async function(resolve, reject) {
+        let aggOperations = uniqueOperations.concat([
+        {$lookup: {from: "users", localField: "author", foreignField: "_id",
+        as: "authorDocument"}},
+        {$project: {
+           title: 1,
+           body: 1,
+           createdDate: 1,
+           author: {$arrayElemAt: ["$authorDocument", 0]}
+        }}])
+        let posts = await postCollection.aggregate(aggOperations).toArray()
+
+        //Clean the author property of posts
+        posts.map(function(post){
+            post.author = {
+                username: post.author.username,
+                avatar: new User(post.author, true).avatar
+            }
+            return post
+        })
+        resolve(posts)
     })
 }
 
@@ -52,14 +78,26 @@ Post.findSingleById = function(id) {
             reject()
             return
         }
-        let post = await postCollection.findOne({_id: new ObjectID(id)})
-        if(post) {
-            resolve(post)
+        
+        let posts = await Post.reusagePostQuery([
+            {$match: {_id: new ObjectID(id)}}
+        ])
+        
+        if(posts.length) {
+            console.log(posts[0])
+            resolve(posts[0])
         }
         else {
             reject()
         }
     })
+}
+
+Post.findByAuthorId = function(authorid) {
+    return Post.reusagePostQuery([
+        {$match: {author: authorid}},
+        {$sort: {createdDate: -1}}
+    ])
 }
 
 module.exports = Post
