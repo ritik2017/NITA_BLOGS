@@ -96,6 +96,7 @@ User.prototype.login = function(resolve,reject){
         this.cleanUp()
         userCollection.findOne({username: this.data.username}).then((attemptedUser) => {
                 if(attemptedUser && bcrypt.compareSync(this.data.password, attemptedUser.password)){
+                    this.data._id = attemptedUser._id
                     this.data.email = attemptedUser.email
                     this.getAvatar()
                     resolve("Congrats!")

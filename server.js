@@ -18,6 +18,10 @@ app.use(sessionOptions)
 app.use(flash())
 
 app.use(function(req, res, next) {
+    // Make all error and success messages available
+    res.locals.errors = req.flash("errors")
+    res.locals.success = req.flash("success")
+
     // Make current user id available in req object
     if(req.session.user){
         req.visitorId = req.session.user._id
@@ -25,7 +29,6 @@ app.use(function(req, res, next) {
     else{
         req.visitorId = 0
     }
-
     // Make User Session Data 
     res.locals.user = req.session.user
     next()
