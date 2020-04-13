@@ -18,7 +18,7 @@ Post.prototype.cleanUp = function() {
         title: this.data.title,
         body: this.data.body,
         createdDate: new Date(),
-        author: ObjectID(this.userid)
+        author: ObjectID(this.userId)
     }
 }
 
@@ -37,8 +37,9 @@ Post.prototype.create = function() {
         this.validate()
         if(!this.errors.length) {
             // Save Blogs in Database
-            postCollection.insertOne(this.data).then(() => {
-                resolve()
+            console.log(this.data)
+            postCollection.insertOne(this.data).then((info) => {
+                resolve(info.ops[0]._id)
             }).catch((error) => {
                 this.errors.push("Please try creating blog after some time")
             })
