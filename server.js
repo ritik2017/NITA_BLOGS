@@ -48,6 +48,8 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 
+// Setting the view engine
+
 app.set('views', 'views')
 app.set('view engine', 'ejs')
 app.use('/', router)
