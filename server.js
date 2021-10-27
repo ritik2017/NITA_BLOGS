@@ -44,6 +44,8 @@ app.use(function(req, res, next) {
     next()
 })
 
+// Making public folder static
+
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
