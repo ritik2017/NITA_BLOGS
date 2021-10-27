@@ -52,4 +52,5 @@ app.set('views', 'views')
 app.set('view engine', 'ejs')
 app.use('/', router)
 
+// Exporting the app
 module.exports = app
