@@ -44,6 +44,8 @@ app.use(function(req, res, next) {
     next()
 })
 
+// Public folder
+
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
@@ -52,7 +54,13 @@ app.use(express.json())
 
 app.set('views', 'views')
 app.set('view engine', 'ejs')
+
+// Using Router
 app.use('/', router)
 
-// Exporting the app
+// Hello World
+
+// Hello World 2
+
+// Exporting the app variable
 module.exports = app
