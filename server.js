@@ -52,7 +52,9 @@ app.use(express.json())
 
 app.set('views', 'views')
 app.set('view engine', 'ejs')
+
+// Using Router
 app.use('/', router)
 
-// Exporting the app
+// Exporting the app variable
 module.exports = app
