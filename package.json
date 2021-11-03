@@ -23,7 +23,7 @@
     "mongoose": "^6.0.12",
     "nodemon": "^2.0.2",
     "path-to-regexp": "^6.1.0",
-    "validator": "^12.2.0"
+    "validator": "^13.7.0"
   },
   "keywords": [],
   "author": "",
