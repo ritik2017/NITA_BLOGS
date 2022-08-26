@@ -20,7 +20,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "mongodb": "^3.5.2",
-    "mongoose": "^6.0.12",
+    "mongoose": "^6.4.6",
     "nodemon": "^2.0.2",
     "path-to-regexp": "^6.1.0",
     "validator": "^12.2.0"
